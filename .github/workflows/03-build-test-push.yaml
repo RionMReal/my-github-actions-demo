@@ -1,4 +1,4 @@
-﻿name: Build Test and Push
+name: Build Test and Push
 
 on:
   push:
@@ -24,7 +24,11 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Tag Docker image
-        run: docker tag testapi ${{ secrets.DOCKER_USERNAME }}/testapi:dev-${{ github.run_number }}
+        run: |
+          docker tag testapi ${{ secrets.DOCKER_USERNAME }}/testapi:dev-${{ github.run_number }}
+          docker tag testapi ${{ secrets.DOCKER_USERNAME }}/testapi:latest
 
       - name: Push Docker image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/testapi:dev-${{ github.run_number }}
+        run: |
+          docker push ${{ secrets.DOCKER_USERNAME }}/testapi:dev-${{ github.run_number }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/testapi:latest

@@ -1,0 +1,11 @@
+name: Hello World
+
+on: [push, workflow_dispatch]
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello from GitHub Actions!"
+      - run: echo "Triggered by ${{ github.event_name }}"
+      - run: echo "Branch is ${{ github.ref }}"

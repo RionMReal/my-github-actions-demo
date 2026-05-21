@@ -32,3 +32,6 @@ jobs:
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/testapi:dev-${{ github.run_number }}
           docker push ${{ secrets.DOCKER_USERNAME }}/testapi:latest
+
+      - name: Update Render
+        run: curl ${{ secrets.RENDER_DEPLOY_HOOK }}
